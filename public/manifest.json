@@ -1,0 +1,13 @@
+{
+  "short_name": "",
+  "name": "Agency Zero",
+  "icons": [
+    {
+      "src": "zero.ico",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone"
+}
