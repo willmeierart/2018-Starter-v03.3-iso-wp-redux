@@ -5,16 +5,16 @@
   "private": true,
   "repository": "https://github.com/agencyzero/2018-Starter-v03.3-iso-wp-redux.git",
   "description": "Agency Zero Universal React/Redux starter",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "serve": "NODE_ENV=production node ./build/server/bundle.js",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "start-js": "node scripts/start.js",
+    "start-js": "node config/scripts/start.js",
     "start": "npm-run-all -p start-js watch-css",
-    "nodemon": "nodemon --watch build/server build/server/bundle.js build/server/bundle.js",
-    "build-client": "node scripts/build-client.js",
-    "build-server": "node scripts/build-server.js",
+    "nodemon": "nodemon --verbose --watch build/* build/client build/client/",
+    "build-client": "node config/scripts/build-client.js",
+    "build-server": "node config/scripts/build-server.js",
     "build": "npm run build-css && npm run build-client && npm run build-server",
     "test": "node scripts/test.js --env=jsdom"
   },
@@ -77,12 +77,10 @@
     "dotenv": "^4.0.0",
     "enzyme": "^3.2.0",
     "eslint": "^4.11.0",
-    "eslint-config-airbnb": "^16.1.0",
     "eslint-config-react-app": "^2.0.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
@@ -121,7 +119,6 @@
     "nodemon": "^1.12.1",
     "normalize.css": "^7.0.0",
     "offline-plugin": "^4.8.4",
-    "offline-request-saga": "^0.1.0",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-context-component": "0.0.6",
@@ -136,11 +133,20 @@
     "react-router-transition": "^1.1.2",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
-    "redux-async-connect": "^1.0.0-rc4",
     "redux-devtools": "^3.4.1",
     "redux-logger": "^3.0.6",
     "redux-offline-status": "^0.1.2",
+    "redux-persist": "^5.4.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react-app",
+      "stage-0",
+      "es2015",
+      "es2017"
+    ]
   }
 }

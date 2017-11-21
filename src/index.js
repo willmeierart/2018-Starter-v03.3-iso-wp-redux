@@ -1,21 +1,22 @@
 import 'babel-polyfill'
 import express from 'express'
-import React from 'react'
 import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy'
-import Routes from './client/Routes'
-import renderer from './helpers/renderer'
-import createStore from './helpers/createStore'
+import routes from './client/routes'
+import renderer from './server/renderer'
+import serverStore from './_redux/serverStore'
 
 const app = express()
+const API_URL = '/'
 
-app.use('/api', proxy('/', { // << insert api URL in 'proxy'
+app.use('/api', proxy(API_URL, {
+  // headers, etc.
 }))
 app.use(express.static('public'))
 app.get('*', (req,res)=>{
-  const store = createStore(req)
+  const store = serverStore(req)
 
-  const promises = matchRoutes(Routes, req.path).map(({route})=>{
+  const promises = matchRoutes(routes, req.path).map(({route})=>{
     return route.loadData ? route.loadData(store) : null
   }).map(promise=>{
     if(promise){

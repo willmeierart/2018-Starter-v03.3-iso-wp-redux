@@ -1,4 +1,4 @@
-import { FETCH_WP_PAGES, FETCH_WP_POSTS } from '../_actions'
+import { FETCH_WP_PAGES, FETCH_WP_POSTS } from '../actions/types'
 
 const initialState = {
   allPages:[],

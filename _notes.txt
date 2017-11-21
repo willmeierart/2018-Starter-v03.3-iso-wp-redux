@@ -1,0 +1,8 @@
+pages needing attention:
+/src/index
+/src/server/renderer
+/config - all but (for now) [
+  /polyfills,
+  /paths,
+  /webpackDevServer.config
+]

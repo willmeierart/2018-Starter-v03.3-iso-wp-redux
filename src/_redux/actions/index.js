@@ -1,26 +1,24 @@
-mport axios from 'axios'
 import { CHECK_BROWSER, FETCH_WP_PAGES, FETCH_WP_POSTS } from './types'
 
-const BASE_URL = '/'
-const PAGES_URL = `${BASE_URL}/wp-json/wp/v2/pages`
-const POSTS_URL = `${BASE_URL}/wp-json/wp/v2/posts`
+const PAGES_URL = `/wp-json/wp/v2/pages`
+const POSTS_URL = `/wp-json/wp/v2/posts`
 
-export function fetchWPpages(){
-  const request = axios.get(PAGES_URL).then(res=>res)
-  return {
+export const fetchWPpages=()=>async(dispatch, getState, api)=>{
+  const request = await api.get(PAGES_URL)
+  dispatch({
     type: FETCH_WP_PAGES,
     payload: request
-  }
+  })
 }
-export function fetchWPposts(){
-  const request = axios.get(POSTS_URL).then(res=>res)
-  return {
+export const fetchWPposts=()=>async(dispatch, getState, api)=>{
+  const request = await api.get(POSTS_URL)
+  dispatch({
     type: FETCH_WP_POSTS,
     payload: request
-  }
+  })
 }
 
-export function checkBrowser(){
+export const checkBrowser=()=>async(dispatch)=>{
   let browser = 'unknown'
   if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
     browser = 'opera'
@@ -33,8 +31,8 @@ export function checkBrowser(){
   } else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) {
     browser = 'ie'
   }
-  return {
+  dispatch({
     type: CHECK_BROWSER,
     payload: browser
-  }
+  })
 }

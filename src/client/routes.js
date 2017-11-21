@@ -1,14 +1,20 @@
-import HomePage from './pages/HomePage'
-import NotFoundPage from './pages/NotFoundPage'
+import App from './components/App.jsx'
+import HomePage from './components/pages/HomePage.jsx'
+import NotFoundPage from './components/pages/NotFoundPage.jsx'
 
 export default [
   {
-    ...HomePage,
-    path:'/',
-    exact: true
-  },
-  {
-    ...NotFoundPage,
-    path:''
+    ...App,
+    routes: [
+      {
+        ...HomePage,
+        path:'/',
+        exact: true
+      },
+      {
+        ...NotFoundPage,
+        path:''
+      }
+    ]
   }
 ]

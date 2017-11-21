@@ -1,4 +1,4 @@
-import { CHECK_BROWSER } from '../actions'
+import { CHECK_BROWSER } from '../actions/types'
 
 const initialState = {
   browser: 'unknown'

@@ -7,7 +7,7 @@ import { renderRoutes } from 'react-router-config'
 import { Loader } from 'react-loaders'
 
 import Store from './clientStore'
-import routes from '/src/client/routes'
+import routes from '../client/routes'
 
 
 const Persistor = persistStore(Store)

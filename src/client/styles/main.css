@@ -14,66 +14,120 @@ CONTENTS:************************************
 ~MEDIA QUERIES~ ****** **********************
 ---------------------- **********************
 ********************************************/
-
 /********************************************
 ***************** ~IMPORTS~ *****************
 ********************************************/
-@import "~normalize.css/normalize.css";
-@import "~loaders.css/loaders.css";
-@import "_base/animations.scss";
-@import "_base/_colors.scss";
-@import "_base/_base.scss";
-@import "_base/_easings.scss";
-@import "_fonts/_fonts.scss";
-@import "_fonts/_type.scss";
+@import url(~normalize.css/normalize.css);
+@import url(~loaders.css/loaders.css);
+/********************************************
+**************** ~FIRST ONE~ ****************
+********************************************/
+/********************************************
+**************** ~BRANDING~ *****************
+********************************************/
+.az-logo-01 .cls-1 {
+  fill: none; }
 
-$color-AZ-red: #970d11;
+.az-logo-01 .cls-2 {
+  fill: #970d11; }
 
+.az-logo-02 .cls-1 {
+  fill: #970d11; }
+
+.az-logo-02 .cls-2 {
+  fill: none; }
+
+.az-logo-02 .cls-3 {
+  fill: #fff; }
+
+.az-logo-02 .cls-4 {
+  fill: #231f20; }
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin: 14px 0;
+  font-style: normal;
+  text-rendering: optimizeLegibility; }
+
+.h1, h1 {
+  font-size: rem(44);
+  line-height: 48.4px; }
+
+.h2, h2 {
+  font-size: rem(37);
+  line-height: 40.7px; }
+
+.h3, h3 {
+  font-size: rem(27);
+  line-height: 29.7px; }
+
+.h4, h4 {
+  font-size: rem(23);
+  line-height: 25.3px; }
+
+.h5, h5 {
+  font-size: rem(17);
+  line-height: 18.7px; }
+
+.h6, h6 {
+  font-size: rem(14);
+  line-height: 15.8px; }
+
+a {
+  text-decoration: none; }
+
+p {
+  margin-bottom: 17px;
+  font-family: inherit;
+  font-weight: normal; }
+
+hr {
+  margin: 22px 0 21px;
+  height: 0;
+  border-width: 1px 0 0;
+  clear: both; }
+
+em, i {
+  font-style: italic;
+  line-height: inherit; }
+
+b, strong {
+  font-weight: bold;
+  line-height: inherit; }
+
+small {
+  font-size: 60%;
+  line-height: inherit; }
 
 /********************************************
 **************** ~VARIABLES~ ****************
 ********************************************/
-
 /********************************************
 ****************** MIXINS *******************
 ********************************************/
-// @mixin prefix($declarations, $prefixes: ()) {
-//   @each $property, $value in $declarations {
-//     @each $prefix in $prefixes {
-//       #{'-' + $prefix + '-' + $property}: $value;
-//     }
-//     #{$property}: $value;
-//   }
-// }
-
 /********************************************
 ****************** ~NAV~ ********************
 ********************************************/
-.header {}
-.footer{}
-
 /********************************************
 ****************** ~HOME~ *******************
 ********************************************/
-.home{}
-
 /********************************************
 ***************** ~LOADERS~ *****************
 ********************************************/
-.loader-wrapper{
-  width:100vw; height:100vh;
-  display:flex; justify-content:center; align-items:center;
-}
-.loader-hidden {display:none;}
+.loader-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.loader-hidden {
+  display: none; }
+
 .loader-active {
-  display:block;
-  .loader-inner div{ background-color:$color-AZ-red; }
-}
+  display: block; }
+  .loader-active .loader-inner div {
+    background-color: #970d11; }
 
 /********************************************
 ************* ~MEDIA QUERIES~ ***************
 ********************************************/
-@media screen and (min-width:981px){}
-@media screen and (min-width:671px) and (max-width:980px){}
-@media screen and (min-width:415px) and (max-width:670px){}
-@media screen and (max-width:414px){}
