@@ -7,10 +7,10 @@ const baseConfig = require('./webpack.config.base.js')
 
 const config = {
   target: 'node',
-  entry: '../src/index.js',
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build/server')
+    path: path.resolve(__dirname, '../build/server')
   },
   externals: [ webpackNodeExternals() ]
 }

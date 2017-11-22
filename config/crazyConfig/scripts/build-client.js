@@ -26,9 +26,9 @@ if (!checkRequiredFiles([paths.appIndexJs])) {
   process.exit(1);
 }
 
-measureFileSizesBeforeBuild(paths.appBuild)
+measureFileSizesBeforeBuild(paths.clientBuild)
   .then(previousFileSizes => {
-    fs.emptyDirSync(paths.appBuild);
+    fs.emptyDirSync(paths.clientBuild);
     copyPublicFolder();
     return build(previousFileSizes);
   })
@@ -56,7 +56,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
       }
 
       console.log('File sizes after gzip:\n');
-      printFileSizesAfterBuild(stats, previousFileSizes, paths.appBuild);
+      printFileSizesAfterBuild(stats, previousFileSizes, paths.clientBuild);
       console.log();
 
       const appPackage = require(paths.appPackageJson);
@@ -110,7 +110,7 @@ function build(previousFileSizes) {
 }
 
 function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
+  fs.copySync(paths.appPublic, paths.clientBuild, {
     dereference: true,
     filter: file => file !== paths.appHtml,
   });

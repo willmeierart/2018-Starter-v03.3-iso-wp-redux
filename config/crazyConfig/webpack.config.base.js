@@ -18,6 +18,19 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
+        include: paths.appSrc,
+        loader: require.resolve('babel-loader'),
+        options: {
+          cacheDirectory: true,
+          presets: [
+            'react-app',
+            'stage-0',
+            ['env', {targets:{browsers:['last 2 versions']}}]
+          ]
+        }
+      },
+      {
+        test: /\.(js|jsx)$/,
         enforce: 'pre',
         use: [
           {
@@ -52,15 +65,7 @@ module.exports = {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]'
         }
-      },
-      {
-        test: /\.(js|jsx)$/,
-        include: paths.appSrc,
-        loader: require.resolve('babel-loader'),
-        options: {
-          cacheDirectory: true
-        }
-      },
+      }
     ]
   },
   plugins: [

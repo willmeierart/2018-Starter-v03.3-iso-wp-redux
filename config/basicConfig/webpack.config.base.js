@@ -4,6 +4,11 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
+  resolve: {
+    extensions: [
+      '.js', '.jsx'
+    ]
+  },
   module:{
     rules:[
       {
@@ -17,18 +22,18 @@ module.exports = {
             loader: 'eslint-loader'
           }
         ],
-        include: 'src'
+        include: path.resolve(__dirname, 'src')
       },
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         options:{
-          presets:[
-            'react-app',
-            'stage-0',
-            ['env', {targets:{browsers:['last 2 versions']}}]
-          ],
+          // presets:[
+          //   'react-app',
+          //   'stage-0',
+          //   ['env', {targets:{browsers:['last 2 versions']}}]
+          // ],
           cacheDirectory:true
         }
       },

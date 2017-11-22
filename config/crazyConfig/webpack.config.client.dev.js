@@ -15,7 +15,7 @@ const config = {
     paths.appClientIndex
   ],
   output: {
-    path: paths.appBuild,
+    path: paths.clientBuild,
     pathinfo: true,
     filename: 'static/js/bundle.js',
     chunkFilename: 'static/js/[name].chunk.js',

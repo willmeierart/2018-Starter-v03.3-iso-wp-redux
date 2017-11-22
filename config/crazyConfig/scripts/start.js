@@ -88,7 +88,7 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
 
             if (!isServerRunning) {
               isServerRunning = true
-              const nodemon = exec('nodemon --watch build/server build/client build/server/bundle.js build/client/bundle.js')
+              const nodemon = exec('nodemon --verbose --watch build/client/*/*/* build/server/*')
 
               nodemon.stdout.on('data', function (data) {
                 console.log(data.toString());
@@ -105,6 +105,8 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
         .catch(err => {
           if (err && err.message) {
             console.log(err.message);
+            console.log(err);
+            console.trace(err)
           }
           process.exit(1);
         });
