@@ -5,6 +5,8 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
+require('../env');
+
 const { exec } = require('child_process');
 const chalk = require('chalk');
 const webpack = require('webpack');
@@ -17,8 +19,14 @@ const {
   prepareUrls,
 } = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
+const paths = require('../paths');
 
 const isInteractive = process.stdout.isTTY;
+
+if (!checkRequiredFiles([paths.appIndexJs])) {
+  console.log('exited at checkRequiredFiles');
+  process.exit(1);
+}
 
 const DEFAULT_CLIENT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const DEFAULT_SERVER_PORT = parseInt(process.env.PORT, 10) || 5678;
@@ -31,13 +39,24 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
     }
 
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+    const appName = require(paths.appPackageJson).name;
+    const urls = prepareUrls(protocol, HOST, port);
 
     process.env.REACT_APP_CLIENT_PORT = port
-    const configWebpackClient = require('../webpack.config.client');
+    const configWebpackClient = require('../webpack.config.client.dev');
 
     const compiler = webpack(configWebpackClient);
 
-    const clientServer = new WebpackDevServer(compiler);
+    const proxySetting = require(paths.appPackageJson).proxy;
+    const proxyConfig = prepareProxy(proxySetting, paths.appPublic);
+    const createDevServerConfig = require('../webpackDevServer.config');
+
+    const serverConfig = createDevServerConfig(
+      proxyConfig,
+      urls.lanUrlForConfig
+    );
+
+    const clientServer = new WebpackDevServer(compiler, serverConfig);
 
     clientServer.listen(port, HOST, err => {
       if (err) {
@@ -64,13 +83,12 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
           compiler.watch({ // watch options:
             aggregateTimeout: 300,
           }, function(err, stats) {
-            console.log('doing things');
             if (err)
               console.log('error on webpack server', err);
 
             if (!isServerRunning) {
               isServerRunning = true
-              const nodemon = exec('nodemon --verbose --watch build --exec "node build/server/bundle.js"')
+              const nodemon = exec('nodemon --verbose --watch build/client/*/*/* build/server/*')
 
               nodemon.stdout.on('data', function (data) {
                 console.log(data.toString());
@@ -87,6 +105,8 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
         .catch(err => {
           if (err && err.message) {
             console.log(err.message);
+            console.log(err);
+            console.trace(err)
           }
           process.exit(1);
         });
