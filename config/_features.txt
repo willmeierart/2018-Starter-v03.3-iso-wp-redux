@@ -1,0 +1,7 @@
+- functional uni/iso compatibility
+- maximum compatibility
+  - polyfills, babel, etc
+- optimization
+  - image handling, code-splitting, etc
+- sass and postcss
+- hot reloading
