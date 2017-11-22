@@ -13,13 +13,13 @@ module.exports = {
     rules:[
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
+        loader: require.resolve('babel-loader'),
         exclude: /node_modules/,
         options:{
           presets:[
-            'react-app',
-            'stage-0',
-            ['env', {targets:{browsers:['last 2 versions']}}]
+            require.resolve('babel-preset-react-app'),
+            require.resolve('babel-preset-stage-0'),
+            [require.resolve('babel-preset-env'), {targets:{browsers:['last 2 versions'], node:"current"}}]
           ],
           cacheDirectory:true
         }
@@ -32,7 +32,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
             },
-            loader: 'eslint-loader'
+            loader: require.resolve('eslint-loader')
           }
         ],
         exclude: /node_modules/
@@ -41,7 +41,7 @@ module.exports = {
         exclude: [
           /\.html$/, /\.(js|jsx)$/, /\.css$/, /\.json$/, /\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/
         ],
-        loader: 'file-loader',
+        loader: require.resolve('file-loader'),
         options: {
           name: 'static/media/[name].[hash:8].[ext]'
         }
@@ -50,10 +50,10 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: require.resolve('url-loader'),
             options: { limit:40000 }
           },
-          'image-webpack-loader'
+          require.resolve('image-webpack-loader')
         ]
       }
     ]

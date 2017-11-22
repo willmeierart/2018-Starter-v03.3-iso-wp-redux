@@ -37,7 +37,7 @@ const config = {
   module: {
     rules: [
       {
-        use: 'babel-loader',
+        use: require.resolve('babel-loader'),
         test: /\.js$/,
       },
       {
