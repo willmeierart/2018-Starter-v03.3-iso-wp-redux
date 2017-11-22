@@ -12,12 +12,12 @@ const DEV = process.env.NODE_ENV === 'development'
 const assetManifest = JSON.parse(process.env.REACT_APP_ASSET_MANIFEST || '{}')
 
 const bundleUrl = DEV ?
-  '/client/static/js/bundle.js' :
-  `/client/${assetManifest['bundle.js']}`
+  '/build/client/static/js/bundle.js' :
+  `/build/client/${assetManifest['bundle.js']}`
 
 const css = DEV ?
   '' : // in DEV the css is hot loaded
-  `<link href="/client/${assetManifest['main.css']}" media="all" rel="stylesheet" />`
+  `<link href="/build/client/${assetManifest['main.css']}" media="all" rel="stylesheet" />`
 
 export default (req, store) => {
   const content = renderToString(

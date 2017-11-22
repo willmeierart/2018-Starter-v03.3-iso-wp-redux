@@ -64,7 +64,6 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
           compiler.watch({ // watch options:
             aggregateTimeout: 300,
           }, function(err, stats) {
-            console.log('doing things');
             if (err)
               console.log('error on webpack server', err);
 
