@@ -1,3 +1,4 @@
+/* eslint-disable */
 import 'babel-polyfill'
 import express from 'express'
 import { matchRoutes } from 'react-router-config'
@@ -13,28 +14,28 @@ app.use('/api', proxy(API_URL, {
   // headers, etc.
 }))
 app.use(express.static('public'))
-app.get('*', (req,res)=>{
+app.get('*', (req, res) => {
   const store = serverStore(req)
 
-  const promises = matchRoutes(routes, req.path).map(({route})=>{
-    return route.loadData ? route.loadData(store) : null
-  }).map(promise=>{
-    if(promise){
-      return new Promise((resolve,reject)=>{
-        promise.then(resolve).catch(resolve)
-      })
-    }
-  })
+  const promises = matchRoutes(routes, req.path)
+    .map(({ route }) => {
+      return route.loadData ? route.loadData(store) : null
+    }).map(promise => {
+      if (promise) {
+        return new Promise((resolve) =>
+          promise.then(resolve).catch(resolve))
+      }
+    })
 
-  Promise.all(promises).then(()=>{
+  Promise.all(promises).then(() => {
     const context = {}
     const content = renderer(req, store, context)
 
-    if(context.url){
+    if (context.url) {
       return res.redirect(301, context.url)
     }
 
-    if (context.notFound){
+    if (context.notFound) {
       res.status(404)
     }
 
@@ -42,6 +43,6 @@ app.get('*', (req,res)=>{
   })
 })
 
-app.listen(3000, ()=>{
+app.listen(3000, () => {
   console.log('listening on 3000')
 })

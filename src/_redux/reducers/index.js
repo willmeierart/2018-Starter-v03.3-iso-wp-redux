@@ -3,8 +3,8 @@ import FunctionalReducer from './reducer_functionals'
 // import persist from './persist'
 
 const rootReducer = {
-  WPdata:MainDataReducer,
-  FnState:FunctionalReducer
+  WPdata: MainDataReducer,
+  FnState: FunctionalReducer,
   // persist:persist
 }
 

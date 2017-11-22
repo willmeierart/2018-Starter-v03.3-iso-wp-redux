@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/es/integration/react'
-import { BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import { Loader } from 'react-loaders'
 
@@ -14,7 +14,7 @@ const Persistor = persistStore(Store)
 const onBeforeLift = () => {
   // take some action before the gate lifts
 }
-export default function AppProvider(){
+export default function AppProvider() {
   return (
     <Provider store={Store}>
       <PersistGate

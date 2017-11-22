@@ -1,5 +1,5 @@
 import 'babel-polyfill'
-import {compose, createStore, applyMiddleware} from 'redux'
+import { compose, createStore, applyMiddleware } from 'redux'
 import logger from 'redux-logger'
 import promise from 'redux-promise'
 // import {persistCombineReducers} from 'redux-persist'
@@ -13,11 +13,10 @@ import reducers from './reducers'
 // const Store = compose(
 //   applyMiddleware(promise, logger, thunk),
 // )(createStore)(reducer)
-export default ()=>{
-  return createStore(
+export default () =>
+  createStore(
     reducers, {},
     compose(
-      applyMiddleware(promise,logger,thunk)
-    )
+      applyMiddleware(promise, logger, thunk),
+    ),
   )
-}

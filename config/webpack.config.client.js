@@ -8,13 +8,13 @@ const baseConfig = require('./webpack.config.base.js')
 
 const config = {
   entry: {
-    bundle: './src/client/client.jsx',
-    polyfills: './config/polyfills.js',
-    vendor: './config/vendors.js'
+    bundle: path.resolve(__dirname, '../src/client/client.jsx'),
+    polyfills: path.resolve(__dirname, './polyfills.js'),
+    vendor: path.resolve(__dirname, './vendors.js')
   },
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, '/build/client'),
+    path: path.resolve(__dirname, '../build/client'),
     publicPath: '/build/client'
   },
   module: {

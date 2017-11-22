@@ -7,7 +7,7 @@ import AppProvider from '../_redux/clientProvider.jsx'
 
 ReactDOM.hydrate(
   <AppProvider/>,
-  document.getElementById('root')
+  document.getElementById('root'),
 )
 
 registerServiceWorker()

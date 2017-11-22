@@ -1,13 +1,13 @@
 import { CHECK_BROWSER } from '../actions/types'
 
 const initialState = {
-  browser: 'unknown'
+  browser: 'unknown',
 }
 
-export default function MainDataReducer(state=initialState, action){
-  switch(action.type){
-    case CHECK_BROWSER:{
-      const newState = {...state}
+export default function MainDataReducer(state = initialState, action) {
+  switch (action.type) {
+    case CHECK_BROWSER: {
+      const newState = { ...state }
       newState.browser = action.payload
       return newState
     }

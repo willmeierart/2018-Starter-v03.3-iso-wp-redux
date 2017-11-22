@@ -1,12 +1,16 @@
+const rejectionTracking = require('promise/lib/rejection-tracking')
+const promise = require('promise/lib/es6-extensions.js')
+// const whatWgFetch = require('whatwg-fetch')
+const objectAssign = require('object-assign')
+const raf = require('raf')
+
 if (typeof Promise === 'undefined') {
-  require('promise/lib/rejection-tracking').enable();
-  window.Promise = require('promise/lib/es6-extensions.js');
+  rejectionTracking.enable()
+  window.Promise = promise
 }
 
-require('whatwg-fetch');
-
-Object.assign = require('object-assign');
+Object.assign = objectAssign
 
 if (process.env.NODE_ENV === 'test') {
-  require('raf').polyfill(global);
+  raf.polyfill(global)
 }

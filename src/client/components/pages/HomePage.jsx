@@ -1,6 +1,6 @@
 import React from 'react'
 
-function HomePage(){
+function HomePage() {
   console.log('homepage');
   return (
     <div className='homepage'>
@@ -9,5 +9,5 @@ function HomePage(){
 }
 
 export default {
-  component: HomePage
+  component: HomePage,
 }
