@@ -11,9 +11,7 @@ const DEV = process.env.NODE_ENV === 'development'
 
 const assetManifest = JSON.parse(process.env.REACT_APP_ASSET_MANIFEST || '{}')
 
-const bundleUrl = DEV ?
-  '/build/client/static/js/bundle.js' :
-  `/build/client/${assetManifest['bundle.js']}`
+const bundleUrl = '/build/server/static/js/bundle.js'
 
 const css = DEV ?
   '' : // in DEV the css is hot loaded
