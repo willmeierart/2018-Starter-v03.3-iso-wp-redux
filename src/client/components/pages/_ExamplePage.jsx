@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { binder } from '../../utils'
-import { fetchWPpages } from '/src/_redux/actions'
+import { fetchWPpages } from '../../../_redux/actions'
 
 class UsersListPage extends Component {
   constructor(props) {

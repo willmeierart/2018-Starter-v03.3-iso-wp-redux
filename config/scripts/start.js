@@ -54,6 +54,7 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
         .then(portServer => {
           if (portServer == null) {
             // We have not found a port.
+            console.log('port not found');
             return;
           }
 
@@ -71,7 +72,7 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
 
             if (!isServerRunning) {
               isServerRunning = true
-              const nodemon = exec('nodemon --verbose --watch build')
+              const nodemon = exec('nodemon --verbose --watch build --exec \" babel-node build/server/bundle.js\"')
 
               nodemon.stdout.on('data', function (data) {
                 console.log(data.toString());

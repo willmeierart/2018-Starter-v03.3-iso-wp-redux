@@ -13,7 +13,7 @@ const API_URL = '/'
 app.use('/api', proxy(API_URL, {
   // headers, etc.
 }))
-app.use(express.static('public'))
+app.use(express.static('build/client'))
 app.get('*', (req, res) => {
   const store = serverStore(req)
 

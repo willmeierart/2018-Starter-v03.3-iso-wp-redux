@@ -12,7 +12,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "node config/scripts/start.js",
     "start": "npm-run-all -p start-js watch-css",
-    "nodemon": "nodemon --verbose --watch build",
+    "nodemon": "nodemon --verbose --watch build --exec \" babel-node build/server/bundle.js\"",
     "build-client": "node config/scripts/build-client.js",
     "build-server": "node config/scripts/build-server.js",
     "build": "npm run build-css && npm run build-client && npm run build-server",
