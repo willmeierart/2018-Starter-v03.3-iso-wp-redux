@@ -13,6 +13,19 @@ module.exports = {
     rules:[
       {
         test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options:{
+          presets:[
+            'react-app',
+            'stage-0',
+            ['env', {targets:{browsers:['last 2 versions']}}]
+          ],
+          cacheDirectory:true
+        }
+      },
+      {
+        test: /\.(js|jsx)$/,
         enforce: 'pre',
         use: [
           {
@@ -23,19 +36,6 @@ module.exports = {
           }
         ],
         exclude: /node_modules/
-      },
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options:{
-          // presets:[
-          //   'react-app',
-          //   'stage-0',
-          //   ['env', {targets:{browsers:['last 2 versions']}}]
-          // ],
-          cacheDirectory:true
-        }
       },
       {
         exclude: [

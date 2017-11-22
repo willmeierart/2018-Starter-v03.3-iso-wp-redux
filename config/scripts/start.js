@@ -20,6 +20,8 @@ const openBrowser = require('react-dev-utils/openBrowser');
 
 const isInteractive = process.stdout.isTTY;
 
+const devServerConfig = require('../webpackDevServer.config')
+
 const DEFAULT_CLIENT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const DEFAULT_SERVER_PORT = parseInt(process.env.PORT, 10) || 5678;
 const HOST = process.env.HOST || '0.0.0.0';
@@ -37,7 +39,7 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
 
     const compiler = webpack(configWebpackClient);
 
-    const clientServer = new WebpackDevServer(compiler);
+    const clientServer = new WebpackDevServer(compiler, devServerConfig);
 
     clientServer.listen(port, HOST, err => {
       if (err) {
@@ -69,7 +71,7 @@ choosePort(HOST, DEFAULT_CLIENT_PORT)
 
             if (!isServerRunning) {
               isServerRunning = true
-              const nodemon = exec('nodemon --verbose --watch build --exec "node build/server/bundle.js"')
+              const nodemon = exec('nodemon --verbose --watch build')
 
               nodemon.stdout.on('data', function (data) {
                 console.log(data.toString());
