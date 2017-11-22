@@ -7,12 +7,12 @@ import renderer from './server/renderer'
 import serverStore from './_redux/serverStore'
 
 const app = express()
-const API_URL = '/'
+const API_URL = 'asdfasdfasd'
 
 app.use('/api', proxy(API_URL, {
   // headers, etc.
 }))
-app.use(express.static('public'))
+app.use(express.static('build/client'))
 app.get('*', (req,res)=>{
   const store = serverStore(req)
 

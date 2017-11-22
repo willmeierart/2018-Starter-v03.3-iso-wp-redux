@@ -29,9 +29,9 @@ const config = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'polyfills', 'manifest']
     }),
-    new HtmlWebpackPlugin({
-      template: 'public/index.html'
-    })
+    // new HtmlWebpackPlugin({
+    //   template: 'public/index.html'
+    // })
   ]
 }
 

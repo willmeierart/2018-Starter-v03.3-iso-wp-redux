@@ -7,12 +7,13 @@
   "description": "Agency Zero Universal React/Redux starter",
   "main": "src/index.js",
   "scripts": {
+    "clean": "rimraf build/client",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "dev:server": "nodemon --verbose --watch build --exec \"node build/server/bundle.js\"",
-    "dev:build-client": "webpack --config config/webpack.config.client.js",
-    "dev:build-server": "webpack --config config/webpack.config.server.js",
-    "start-js": "npm-run-all --parallel dev:*",
+    "dev:build-client": "webpack --config config/webpack.config.client.js --watch",
+    "dev:build-server": "webpack --config config/webpack.config.server.js --watch",
+    "start-js": "npm run clean && npm-run-all --parallel dev:*",
     "start": "npm-run-all --parallel start-js watch-css",
     "test": "node scripts/test.js --env=jsdom"
   },

@@ -16,7 +16,7 @@ const Store = createStore(
   reducer,
   window.INITIAL_STATE,
   compose(
-    applyMiddleware(promise,logger,thunk)
+    applyMiddleware(promise,logger,thunk.withExtraArgument(axiosInstance))
   )
 )
 

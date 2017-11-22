@@ -8,8 +8,8 @@ export default [
     routes: [
       {
         ...HomePage,
-        path:'/',
-        exact: true
+        exact:true,
+        path:'/'
       },
       {
         ...NotFoundPage,

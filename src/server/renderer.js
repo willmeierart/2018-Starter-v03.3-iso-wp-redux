@@ -7,23 +7,10 @@ import serialize from 'serialize-javascript'
 
 import routes from '../client/routes'
 
-const DEV = process.env.NODE_ENV === 'development'
-
-const assetManifest = JSON.parse(process.env.REACT_APP_ASSET_MANIFEST || '{}')
-
-const bundleUrl = DEV ?
-  '/client/static/js/bundle.js' :
-  `/client/${assetManifest['bundle.js']}`
-
-const css = DEV ?
-  '' : // in DEV the css is hot loaded
-  `<link href="/client/${assetManifest['main.css']}" media="all" rel="stylesheet" />`
-
-export default (req, store) => {
-  console.log('renderer');
+export default (req, store, context) => {
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={req.path} context={{}}>
+      <StaticRouter location={req.path} context={context}>
         <div>{renderRoutes(routes)}</div>
       </StaticRouter>
     </Provider>
@@ -35,7 +22,6 @@ export default (req, store) => {
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <meta name="theme-color" content="#ffffff">
-          ${css}
           <link rel="manifest" href="/public/manifest.json">
           <link rel="shortcut icon" href="/public/zero.ico">
           <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXX-X"></script>--!>
@@ -43,7 +29,6 @@ export default (req, store) => {
         </head>
         <body>
           <div id="root">${content}</div>
-          <script type="application/javascript" src="${bundleUrl}"></script>
           <script>
             window.INITIAL_STATE = ${serialize(store.getState())}
           </script>
