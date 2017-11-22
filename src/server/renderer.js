@@ -20,6 +20,7 @@ const css = DEV ?
   `<link href="/client/${assetManifest['main.css']}" media="all" rel="stylesheet" />`
 
 export default (req, store) => {
+  console.log('renderer');
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.path} context={{}}>

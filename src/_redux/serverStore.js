@@ -4,8 +4,11 @@ import logger from 'redux-logger'
 import promise from 'redux-promise'
 // import {persistCombineReducers} from 'redux-persist'
 // import storage from 'redux-persist/lib/storage'
+import { combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import reducers from './reducers'
+
+const reducer = combineReducers(reducers)
 
 // const config={key:'root', storage}
 // const reducer = persistCombineReducers(config, reducers)
@@ -15,7 +18,7 @@ import reducers from './reducers'
 // )(createStore)(reducer)
 export default ()=>{
   return createStore(
-    reducers, {},
+    reducer, {},
     compose(
       applyMiddleware(promise,logger,thunk)
     )

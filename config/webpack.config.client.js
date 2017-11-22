@@ -14,8 +14,8 @@ const config = {
   },
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, '/build/client'),
-    publicPath: '/build/client'
+    path: path.resolve(__dirname, '../build/client'),
+    publicPath: 'build/client/'
   },
   module: {
     rules: [
